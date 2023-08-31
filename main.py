@@ -2,16 +2,21 @@ from instabot import Bot, utils
 myBot = Bot()
 
 myBot = Bot(max_likes_to_like=1000)
-myBot.login(username="samspythonbot", password="Samisawesome12")
-menuChoice = 0
 
 print("Welcome to Sam's Instagram Bot")
+
+# Login to account
+accUser = input("Enter username: ")
+accPass = input("Enter password: ")
+myBot.login(username=accUser, password=accPass)
+
+menuChoice = 0 # Initializes menu choice to 0 so that the while loop is ran
 
 while menuChoice != 100:
     print("What would you like to do?")
     menuChoice = int(
         input("1.Follow a user\n2.Like a post\n3.Comment on a post\n4.Post a photo\n5.Like & comment on post\n"
-              "6.Send a DM\n7.See those that aren't following back\n100.Logout and exit program\n"))
+              "6.Send a DM\n7.Post story\n8.See those that aren't following back\n100.Logout and exit program\n"))
 
     # Follows User
     if menuChoice == 1:
@@ -62,8 +67,12 @@ while menuChoice != 100:
             dmMess = input("Enter message: ")
             myBot.send_message(dmMess, dmAcc)
 
-    # See those who aren't following you back
     elif menuChoice == 7:
+        imgName = input("Enter the name of the image you would like to post. Include .jpg/.jpeg/: ")
+        myBot.upload_story_photo(imgName)
+
+    # See those who aren't following you back
+    elif menuChoice == 8:
         file = utils.file("config/non-followers.txt")
         nonFollowers = set(myBot.following) - set(myBot.followers) - myBot.friends_file.set
         nonFollowers = list(nonFollowers)
