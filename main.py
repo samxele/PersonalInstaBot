@@ -1,7 +1,7 @@
 from instabot import Bot, utils
-myBot = Bot()
+myBot = Bot() # Creation of bot object
 
-myBot = Bot(max_likes_to_like=1000)
+myBot = Bot(max_likes_to_like=1000) # Limits the max number of posts the bot can like to be 1K
 
 print("Welcome to Sam's Instagram Bot")
 
